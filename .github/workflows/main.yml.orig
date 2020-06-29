@@ -1,0 +1,24 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+<<<<<<< HEAD
+    types: [opened, synchronize]
+=======
+>>>>>>> 6e7ad5fde8a8aafc1faeb23e3bcba0dc30d730d8
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy MkDocs
+      uses: mhausenblas/mkdocs-deploy-gh-pages@1.12
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
