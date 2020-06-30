@@ -5,15 +5,25 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-    types: [opened, synchronize]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+    
+    - name: Install Pip
+      run:  python -m pip install --upgrade pip
+    
+    - name: Install dependencies
+      run: pip install mkdocs && pip install mkdocs-material markdown-include
+    
+    - name: Build docs
+      run:  python -m mkdocs build
+
     - name: Deploy MkDocs
       uses: mhausenblas/mkdocs-deploy-gh-pages@1.12
       with:
